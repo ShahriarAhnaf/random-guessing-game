@@ -9,16 +9,15 @@
 
 using namespace std;
 
-/*
-static std::random_device rd; 
-static std::mt19937 rng(rd());
+static random_device rd; 
+static mt19937 rng(rd());
 
 int RandElement()
 {
-    static std::uniform_int_distribution<int> elements(1, 20); // random dice
+    static std::uniform_int_distribution<int> elements(0, 19); // random dice
     return elements(rng); // use rng as a generator
 }
-*/
+
 //the game developer way?
 
 int main()
@@ -33,12 +32,12 @@ int main()
     //using srand
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 //making the random number
-    string compGuess = elements[rand() % 19]; // to make the rand int compatible with the array.
+    string compGuess = elements[RandElement()]; // to make the rand int compatible with the array.
     
 
 
     cout <<setw(40)<<"first 20 elements guesser\n";
-    cout << "\n The computer will guess from these elements : \n ";
+    cout << "\n The computer will guess from these elements : \n";
     
     for (int i = 0; i < 19; i++)
     {
@@ -54,8 +53,8 @@ int main()
 
 
     cout << "\n Guess the same element as the computer! : ";
-    
-   while (guess != compGuess)
+    cout << compGuess;
+    while (guess != compGuess)
     {
         if (tries > 0)
         {
@@ -63,9 +62,9 @@ int main()
         }
         cin >> guess;
         tries++;
+        
     }
-
-   cout << "\n YOU WON! YOU CORRECTLY CAUGHT THE COMPUTER GUESSING" << compGuess;
+   cout << "\n YOU WON! YOU CORRECTLY CAUGHT THE COMPUTER GUESSING :" << compGuess;
 
 
 }
