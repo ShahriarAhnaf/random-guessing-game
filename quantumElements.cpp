@@ -25,8 +25,9 @@ int main()
    
     int compElement = 0;
     int tries = 0;
+    int compguess = 0;
     bool gameFinished = false;
-
+    int hint = 0;
     string elements[20] = { "hydrogen", "helium", "lithium", "beryllium", "boron", "carbon", "nitrogen", "oxygen", "flourine", "neon",
                     "sodium", "magnesium", "aluminium", "silicon", "phosphorus", "sulfur", "chlorine", "argon" };
     string guess = "";
@@ -34,9 +35,21 @@ int main()
     //using srand
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 //making the random number
-    string compGuess = elements[rand() % 19]; // to make the rand int compatible with the array.
+    compguess = rand() % 19;
+    string compGuess = elements[compguess]; // to make the rand int compatible with the array.
     
-
+    if (compguess <= 1)
+    {
+        hint = 1;
+    }
+    else if (compguess > 1 && compguess <= 9)
+    {
+        hint = 2;
+    }
+    else
+    {
+        hint = 3;
+    }
 
     cout <<setw(90)<<"FIRST 20 ELEMENTS GUESSER\n \t\t\t Guess the element in 5 tries!";
     cout << "\nThe computer will guess from these elements:\n";
@@ -62,11 +75,16 @@ int main()
         {
             if (tries > 0)
             {
+                if (tries > 2)
+                {
+                    cout << "hint: its outer shell is the " << hint << " energy level. ";
+                }
                 cout << tries << " try. keep trying! :";
-            }
-
+            } 
             cin >> guess;
             tries++;
+
+
             if (guess == compGuess)
             {
                 gameFinished = true;
