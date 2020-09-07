@@ -26,8 +26,10 @@ int main()
     int compElement = 0;
     int tries = 0;
     int compguess = 0;
+    int randHint = -1;
     bool gameFinished = false;
     int hint = 0;
+    string hintString = "";
     string elements[20] = { "hydrogen", "helium", "lithium", "beryllium", "boron", "carbon", "nitrogen", "oxygen", "flourine", "neon",
                     "sodium", "magnesium", "aluminium", "silicon", "phosphorus", "sulfur", "chlorine", "argon" };
     string guess = "";
@@ -50,6 +52,50 @@ int main()
     {
         hint = 3;
     }
+
+    randHint = rand() % 2; // random hint to see which type of hint
+
+    //to assign the hint based on both random hint and the computers guess
+    if (hint == 2 && randHint == 0)
+    {
+        hintString = "The element is NOT in the 1 energy level";
+    }
+    else if (hint == 1 && randHint == 0)
+    {
+
+        hintString = "The element is NOT in the 2 energy level";
+    }
+    else if (hint == 3 && randHint == 0)
+    {
+
+        hintString = "The element is NOT in the 2 energy level";
+    }
+    else if (hint == 3 && randHint == 1)
+    {
+        hintString = "The element is NOT in the 1 energy level";
+    }
+    else if (hint == 1 && randHint == 2)
+    {
+
+        hintString = "The element is NOT in the 3 energy level";
+    }
+    else if (hint == 1 && randHint == 2)
+    {
+
+        hintString = "The element is in the 1 energy level";
+    }
+    else if (hint == 3 && randHint ==2)
+    {
+
+        hintString = "The element is in the 3 energy level";
+    }
+    else if (hint == 2 && randHint == 2)
+    {
+
+        hintString = "The element is in the 2 energy level";
+    }
+
+
 
     cout <<setw(90)<<"FIRST 20 ELEMENTS GUESSER\n \t\t\t Guess the element in 5 tries!";
     cout << "\nThe computer will guess from these elements:\n";
@@ -77,7 +123,7 @@ int main()
             {
                 if (tries > 2)
                 {
-                    cout << "hint: its outer shell is the " << hint << " energy level. ";
+                    cout << hintString << " " ;
                 }
                 cout << tries << " try. keep trying! :";
             } 
